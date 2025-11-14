@@ -38,11 +38,11 @@ const ScorePill = ({ comment, handleVote }: PropsType) => {
   return (
     <StyledScorePill>
       <Button onClick={handleIncrease}>
-        <img src="/public/images/icon-plus.svg" alt="plus" />
+        <img src="/images/icon-plus.svg" alt="plus" />
       </Button>
       <Score>{comment.score}</Score>
       <Button onClick={handleDecrease} disabled={comment.score === 0}>
-        <img src="/public/images/icon-minus.svg" alt="minus" />
+        <img src="/images/icon-minus.svg" alt="minus" />
       </Button>
     </StyledScorePill>
   );
