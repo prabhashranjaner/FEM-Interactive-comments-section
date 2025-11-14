@@ -27,7 +27,7 @@ export type ActionType =
     }
   | {
       type: "comment/update";
-      payload: Partial<CommentType>;
+      payload: CommentType;
     }
   | {
       type: "comment/delete";

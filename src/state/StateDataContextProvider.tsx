@@ -1,7 +1,14 @@
-import { createContext, useContext, useReducer, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  type ReactNode,
+} from "react";
 import { reducer } from "./reducer";
 import data from "../../data.json";
 import type { ContextType } from "../types/contexTypes";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const StateDataContext = createContext<ContextType | null>(null);
 
@@ -10,7 +17,12 @@ export default function StateDataContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [state, dispatch] = useReducer(reducer, data);
+  const [value, setValue] = useLocalStorage("comments-state", data);
+  const [state, dispatch] = useReducer(reducer, value);
+
+  useEffect(() => {
+    setValue(state);
+  }, [setValue, state]);
   return (
     <StateDataContext.Provider value={{ state, dispatch }}>
       {children}
